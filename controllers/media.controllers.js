@@ -22,7 +22,7 @@ class MediaController {
         const condition = body.condition;
         const query = await MediaQueries.find(condition);
         if(query.ok) {
-            return res.status(200).json({ok: true, data: query.data});
+            return res.status(200).json(query.data);
         } else {
             return res.status(403).json({ok: false, message: 'Error on process request'});
         }
@@ -34,7 +34,7 @@ class MediaController {
         const {id} = req.params;
         const query = await MediaQueries.findByPk(id,condition);
         if(query.ok){
-            return res.status(200).json({ok: true, data: query.data});
+            return res.status(200).json(query.data);
         }else{
             return res.status(403).json({ok: false, message: 'No found'});
         }

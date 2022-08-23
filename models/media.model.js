@@ -1,6 +1,5 @@
 import {Model, DataTypes} from 'sequelize';
 import {DatabaseConfig} from '../config/database.js';
-import { AboutmeModel } from './aboutme.model.js';
 
 export class MediaModel extends Model {}
 

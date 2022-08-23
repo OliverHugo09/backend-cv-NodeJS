@@ -40,6 +40,18 @@ class userQueries {
         }
     }
 
+    async findUser(condition) {
+        try {
+            const query = await UserModel.findOne({where:{username:condition.username}});
+            if(query){
+                return query;
+            }
+        } catch (e) {
+            console.log('Error al ejecutar query', e);
+            return {ok: false, data: null};
+        }
+    }
+
     async findByPk(id) {
         try {
             const query = await UserModel.findByPk(id);

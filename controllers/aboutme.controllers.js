@@ -23,7 +23,7 @@ class AboutmeController {
         const {id} = req.params;
         const query = await AboutmeQueries.findByPk(id,condition);
         if(query.ok){
-            return res.status(200).json({ok: true, data: query.data});
+            return res.status(200).json(query.data);
         }else{
             return res.status(403).json({ok: false, message: 'No found'});
         }
@@ -60,7 +60,7 @@ class AboutmeController {
         const condition = body.condition;
         const query = await AboutmeQueries.find(condition);
         if(query.ok) {
-            return res.status(200).json({ok: true, data: query.data});
+            return res.status(200).json(query.data);
         } else {
             return res.status(403).json({ok: false, message: 'Error on process request'});
         }

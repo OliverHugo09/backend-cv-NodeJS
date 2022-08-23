@@ -31,7 +31,7 @@ class UserController {
         const {id} = req.params;
         const query = await UserQueries.findByPk(id,condition);
         if(query.ok){
-            return res.status(200).json({ok: true, data: query.data});
+            return res.status(200).json(query.data);
         }else{
             return res.status(403).json({ok: false, message: 'No found'});
         }
@@ -68,7 +68,20 @@ class UserController {
         const condition = body.condition;
         const query = await UserQueries.find(condition);
         if(query.ok) {
-            return res.status(200).json({ok: true, data: query.data});
+            return res.status(200).json(query.data);
+        } else {
+            return res.status(403).json({ok: false, message: 'Error on process request'});
+        }
+    }
+
+    async finduser(req, res) {
+        const body = req.body; 
+        const query = await UserQueries.findOne({
+            username: body.username,
+            password: body.password
+        });
+        if(query) {
+            return res.status(200).json(query);
         } else {
             return res.status(403).json({ok: false, message: 'Error on process request'});
         }

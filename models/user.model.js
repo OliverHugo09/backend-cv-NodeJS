@@ -31,7 +31,11 @@ UserModel.init({
     avatar:{
         type: DataTypes.STRING(255),
         allowNull:true
-    }
+    },
+    isAuthenticated:{
+        type: DataTypes.INTEGER,
+        allowNull: true,
+    },
 },  {
     sequelize: DatabaseConfig,
     tableName: 'users',
