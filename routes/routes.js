@@ -8,6 +8,7 @@ import { freetimeController } from "../controllers/freetime.controllers.js";
 import { skillController } from "../controllers/skill.controllers.js";
 import { experienceController } from "../controllers/experience.controllers.js";
 import { contactController } from "../controllers/contact.controllers.js";
+import { mainController } from "../controllers/main.controllers.js";
 
 // Token validate
 import { validateToken } from "../middlewares/acessToken.middleware.js";
@@ -81,6 +82,13 @@ export class Routes {
         app.route('/contact/:id', contactController.findByPk).get([validateToken.validateJWT], contactController.findByPk);
         app.route('/contact/:id', contactController.update).put([validateToken.validateJWT], contactController.update);
         app.route('/contact/:id', contactController.delete).delete([validateToken.validateJWT], contactController.delete);
+
+        //Main (Listar, Crear, Mostrar, Update, Delete)
+        app.get('/main', mainController.find);
+        app.route('/main', mainController.create).post([validateToken.validateJWT], mainController.create);
+        app.route('/main/:id', mainController.findByPk).get([validateToken.validateJWT], mainController.findByPk);
+        app.route('/main/:id', mainController.update).put([validateToken.validateJWT], mainController.update);
+        app.route('/main/:id', mainController.delete).delete([validateToken.validateJWT], mainController.delete);
 
     }
 }
